@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="rptConsumo" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa7c223e-aa03-4e5d-a956-3f072dcab240">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="buscar" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select (c.Precio_Venta*c.Cantidad) as total, c.Cod_Consumo,c.Cod_Reserva,c.Cod_Producto,p.Nombre,
+c.Cantidad,c.Precio_Venta,c.Estado, sum(c.Precio_Venta*c.Cantidad)as totalfinal from consumo c inner join producto p on c.Cod_Producto=p.Cod_Producto
+where
+c.Cod_Reserva =$P{buscar} order by c.Cod_Consumo desc]]>
+	</queryString>
+	<field name="total" class="java.math.BigDecimal"/>
+	<field name="Cod_Consumo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cod_Reserva" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cod_Producto" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Nombre" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Cantidad" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Precio_Venta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Estado" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="totalfinal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="212" height="76" uuid="caa4d594-9162-45bb-8a69-115a2343effb"/>
+				<imageExpression><![CDATA["D:\\trabajos\\semestre2\\HOTEL_RELAX_1\\src\\Files\\3.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="173" y="3" width="162" height="19" uuid="f3f84f3b-a008-46b6-b722-7ec274f21abd"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Av. Colombia, 2-72 - 760001]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="41" width="162" height="19" uuid="42472442-441d-475d-81a1-b087732411f0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[www.hotelrelax.info]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="173" y="22" width="162" height="19" uuid="4f18b66f-fe3d-4e1c-a70e-866ebf4b365d"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Telefono: (2) 8823225]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="318" y="59" width="172" height="20" uuid="e73d68b7-dc21-42e2-80ae-826a2cbd0653"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="h.mm a">
+				<reportElement x="490" y="59" width="82" height="20" uuid="e08f70ad-fd1b-4d7a-8f64-88fd863278b0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="572" height="35" backcolor="#CCCCFF" uuid="53a03566-5b71-41d8-9303-799dfd82d8f4"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="126" y="1" width="276" height="34" uuid="8041014e-33d8-4f1e-a527-fc0e3f3ff164"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Consumos por Reserva]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="0" y="41" width="49" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="97f39d51-0a50-4fa5-b16f-355fbae09e73"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[COD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="49" y="41" width="124" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f9fea392-97cc-419f-ae72-eaee9c005862"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="173" y="41" width="81" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="daf83f0b-5d9b-407a-8006-2ee376d3c568"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[CANTIDAD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="254" y="41" width="110" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="50b56b69-73e1-4fbb-9508-49d3fccaf515"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PRECIO VENTA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="472" y="41" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6ecba69a-e937-4ac9-9cd7-8cc904edebf7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ESTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="364" y="41" width="108" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="24206663-2c76-462b-877c-a7cea123560e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="35" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="49" height="20" uuid="b46ae825-36ce-43ad-83f6-6161638af840"/>
+				<textElement textAlignment="Center">
+					<font fontName="Segoe UI" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cod_Producto}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="49" y="0" width="124" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2740a887-ed69-48c4-aa8e-bc481b6d1f80"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Nombre}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="173" y="0" width="81" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="41178ba8-1dd6-4e77-be75-b7c9abb250d7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Cantidad}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="254" y="0" width="110" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="88b01179-60e1-4ca3-b4b8-d17b281262be"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Precio_Venta}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="472" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a154a2f8-f449-4a47-b1c8-49013fcf0672"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Estado}]]></textFieldExpression>
+			</textField>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="364" y="0" width="108" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d8bacfa3-959c-45a6-a501-8693e547a9ca"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="35" splitType="Stretch">
+			<rectangle radius="10">
+				<reportElement x="0" y="0" width="572" height="35" backcolor="#CCCCFF" uuid="82b3bbf0-afad-4cad-aec1-a4a0b6028dd7"/>
+			</rectangle>
+			<textField pattern="¤ #,##0.00" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="456" y="0" width="116" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="8fbed3bb-a9e4-4c0b-8d51-588bc07b4262"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Segoe UI" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalfinal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="346" y="0" width="110" height="35" forecolor="#000000" backcolor="#FFFFFF" uuid="5d7f4788-ce73-4ad0-84ca-1ae140dd5688"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="SansSerif" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[SUMA TOTAL:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement mode="Opaque" x="2" y="41" width="530" height="13" backcolor="#E6E6E6" uuid="e66f934a-80b8-4cf8-95bc-b24b9b94e435"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="2" y="41" width="100" height="13" uuid="32f450b5-6c3e-4ea2-91a6-914ca33b712f"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement mode="Opaque" x="532" y="41" width="40" height="13" backcolor="#E6E6E6" uuid="973cb1b3-f31b-4eaf-84ee-028f3d928c65"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
